@@ -18,7 +18,7 @@ import {MenuIcon, Lense} from '../utils/icons';
 
 const types = ['all', 'chairs', 'sofas', 'beds'];
 
-const ProductsList = ({navigation}) => {
+const Favorites = () => {
   const [selectedType, setSelectedType] = useState('all');
 
   const TypeButton = ({type}) => {
@@ -78,7 +78,7 @@ const ProductsList = ({navigation}) => {
   );
 };
 
-export default ProductsList;
+export default Favorites;
 
 const styles = StyleSheet.create({
   container: {

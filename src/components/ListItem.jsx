@@ -2,9 +2,11 @@ import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
 import React, {useState} from 'react';
 import {colors} from '../utils/constants';
 import {HeartIconSolid} from '../utils/icons';
+import {useNavigation} from '@react-navigation/native';
 
 const ListItem = ({item}) => {
   const [fav, setfav] = useState(false);
+  const navigation = useNavigation();
   if (!item) {
     return;
   }
@@ -17,8 +19,9 @@ const ListItem = ({item}) => {
           <HeartIconSolid size={15} color={colors.favGray} />
         )}
       </Pressable>
-
-      <Image source={item.image} style={styles.image} />
+      <Pressable onPress={() => navigation.navigate('Details')}>
+        <Image source={item.image} style={styles.image} />
+      </Pressable>
       <View style={styles.textBox}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.subtitle}>${item.price}</Text>

@@ -3,12 +3,14 @@ import React, {useState} from 'react';
 import {colors} from '../utils/constants';
 import {ArrowLeft, HeartIconSolid} from '../utils/icons';
 import ImageSlider from './ImageSlider';
+import {useNavigation} from '@react-navigation/native';
 
 const ItemGallery = ({itemImages}) => {
   const [showSlider, setshowSlider] = useState(false);
   const [thumbIndex, setThumbIndex] = useState(0);
   const [sliderIndex, setSliderIndex] = useState(0);
   const [fav, setfav] = useState(false);
+  const navigation = useNavigation();
 
   const ThumbImage = ({thumbImg, overlay = false, index = 0}) => {
     return (
@@ -38,7 +40,9 @@ const ItemGallery = ({itemImages}) => {
         <View style={styles.thumbsView}>
           <Image source={itemImages[thumbIndex]} style={styles.image} />
           <View style={styles.iconsRow}>
-            <Pressable style={styles.iconBox}>
+            <Pressable
+              style={styles.iconBox}
+              onPress={() => navigation.navigate('ProductsHome')}>
               <ArrowLeft size={20} color={colors.balck} />
             </Pressable>
             <Pressable style={styles.iconBox} onPress={() => setfav(!fav)}>
