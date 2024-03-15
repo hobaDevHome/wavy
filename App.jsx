@@ -24,18 +24,20 @@ import ProductsList from './src/pages/ProductsList';
 import Login from './src/pages/Login';
 import DrawerPage from './src/pages/DrawerPage';
 import Cart from './src/pages/Cart';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <SafeAreaView>
-      <StatusBar />
-      {/* <Home /> */}
-      {/* <Details /> */}
-      {/* <ProductsList /> */}
-      {/* <Login /> */}
-      {/* <DrawerPage /> */}
-      <Cart />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="List" component={ProductsList} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

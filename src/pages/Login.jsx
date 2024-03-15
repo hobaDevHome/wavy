@@ -13,7 +13,7 @@ import {TextInput} from 'react-native-paper';
 import google from '../images/google.png';
 import facebook from '../images/facebook.png';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [newUser, setNewUser] = useState(false);
   const [email, setemail] = useState('');
   const [pawd, setpawd] = useState('');
@@ -52,7 +52,9 @@ const Login = () => {
             secureTextEntry
           />
         )}
-        <TouchableOpacity style={styles.loginBtn}>
+        <TouchableOpacity
+          style={styles.loginBtn}
+          onPress={() => navigation.navigate('Home')}>
           {newUser ? (
             <Text style={styles.btntext}>Sing up</Text>
           ) : (

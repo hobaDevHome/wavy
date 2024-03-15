@@ -1,10 +1,17 @@
 /* eslint-disable prettier/prettier */
-import {View, Text, ImageBackground, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  ImageBackground,
+  StyleSheet,
+  Image,
+  Pressable,
+} from 'react-native';
 import React from 'react';
 import button from '../images/Button.png';
 import {colors} from '../utils/constants';
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <ImageBackground
       source={require('../images/Onboarding.jpg')}
@@ -22,7 +29,9 @@ const Home = () => {
         <Text style={styles.subTitle}>
           Furniture and inspiration for a better everyday life at home
         </Text>
-        <Image source={button} />
+        <Pressable onPress={() => navigation.navigate('List')}>
+          <Image source={button} />
+        </Pressable>
       </View>
     </ImageBackground>
   );
