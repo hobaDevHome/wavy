@@ -5,4 +5,6 @@ export const colors = {
   favGray: '#757575',
   maroon: '#BC4749',
   darkGreen: '#6A994E',
+  white: '#fff',
+  lightGrey: '#F8F8FB',
 };

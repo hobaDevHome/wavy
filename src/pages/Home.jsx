@@ -17,7 +17,6 @@ const Home = () => {
           interior <Text style={styles.span}>minimal</Text>
         </Text>
         <Text style={styles.title}>
-          {' '}
           <Text style={styles.span}>and modern.</Text>
         </Text>
         <Text style={styles.subTitle}>

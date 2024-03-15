@@ -12,6 +12,9 @@
   "dependencies": {
     "react": "18.2.0",
     "react-native": "0.73.6",
+    "react-native-paper": "^5.12.3",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^10.0.3"
   },
   "devDependencies": {

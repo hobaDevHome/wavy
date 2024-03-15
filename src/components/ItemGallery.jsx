@@ -1,7 +1,7 @@
 import {Image, StyleSheet, Text, View, Pressable} from 'react-native';
 import React, {useState} from 'react';
 import {colors} from '../utils/constants';
-import {ArrowLeft, HeartIconOutline, HeartIconSolid} from '../utils/icons';
+import {ArrowLeft, HeartIconSolid} from '../utils/icons';
 import ImageSlider from './ImageSlider';
 
 const ItemGallery = ({itemImages}) => {
