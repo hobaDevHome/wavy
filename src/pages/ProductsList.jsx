@@ -10,7 +10,7 @@ import {
   SafeAreaView,
   Pressable,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {colors} from '../utils/constants';
 import {tempData} from '../utils/data';
 import ListItem from '../components/ListItem';
@@ -20,6 +20,23 @@ const types = ['all', 'chairs', 'sofas', 'beds'];
 
 const ProductsList = ({navigation}) => {
   const [selectedType, setSelectedType] = useState('all');
+  const [filtered, setFiltered] = useState([]);
+
+  useEffect(() => {
+    setFiltered(tempData);
+  }, []);
+
+  useEffect(() => {
+    if (selectedType === 'all') {
+      setFiltered(tempData);
+    } else {
+      let temp = tempData.filter(
+        e => e.type.toLowerCase() === selectedType.toLowerCase(),
+      );
+
+      setFiltered(temp);
+    }
+  }, [selectedType]);
 
   const TypeButton = ({type}) => {
     return (
@@ -33,7 +50,7 @@ const ProductsList = ({navigation}) => {
       </Pressable>
     );
   };
-
+  console.log('selecttype', selectedType);
   return (
     <SafeAreaView>
       <ImageBackground
@@ -66,7 +83,7 @@ const ProductsList = ({navigation}) => {
           </View>
 
           <FlatList
-            data={tempData}
+            data={filtered}
             renderItem={({item}) => <ListItem item={item} />}
             keyExtractor={item => item.id}
             numColumns={2}

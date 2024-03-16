@@ -1,19 +1,21 @@
 import * as React from 'react';
 import {View, Text} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import ProdcutsStack from './ProdcutsStack';
+import {NavigationContainer} from '@react-navigation/native';
+
 import Cart from './Cart';
-import Details from './Details';
-import TabNavigator from './ProdcutsStack';
+
+import TabNavigator from './TabNavigator';
 import Favorites from './Favorites';
+import ProductsList from './ProductsList';
+import DrawerPage from './DrawerPage';
 
 const Drawer = createDrawerNavigator();
 
 const AppDrawer = () => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="ProdcutsStack" component={TabNavigator} />
+    <Drawer.Navigator drawerContent={props => <DrawerPage {...props} />}>
+      <Drawer.Screen name="ProdcutsList" component={TabNavigator} />
       <Drawer.Screen name="CartPage" component={Cart} />
       <Drawer.Screen name="Favorites" component={Favorites} />
     </Drawer.Navigator>
@@ -21,5 +23,3 @@ const AppDrawer = () => {
 };
 
 export default AppDrawer;
-
-const styles = StyleSheet.create({});

@@ -14,25 +14,9 @@ import React, {useState} from 'react';
 import {colors} from '../utils/constants';
 import {tempData} from '../utils/data';
 import ListItem from '../components/ListItem';
-import {MenuIcon, Lense} from '../utils/icons';
 
-const types = ['all', 'chairs', 'sofas', 'beds'];
-
-const Favorites = () => {
+const Favorites = ({favList}) => {
   const [selectedType, setSelectedType] = useState('all');
-
-  const TypeButton = ({type}) => {
-    return (
-      <Pressable onPress={() => setSelectedType(type)}>
-        <Text
-          style={
-            type === selectedType ? styles.typeButtonActive : styles.typeButton
-          }>
-          {type}
-        </Text>
-      </Pressable>
-    );
-  };
 
   return (
     <SafeAreaView>
@@ -40,29 +24,8 @@ const Favorites = () => {
         source={require('../images/Home.png')}
         style={styles.image}>
         <ScrollView>
-          <View style={styles.iconsRow}>
-            <Pressable style={styles.iconBox}>
-              <MenuIcon size={20} color={colors.balck} />
-            </Pressable>
-            <Text style={styles.greet}>Hello, John Honai</Text>
-            <Pressable
-              style={[styles.iconBox, {backgroundColor: colors.balck}]}>
-              <Lense size={24} color={colors.white} />
-            </Pressable>
-          </View>
           <View style={{marginTop: 20}}>
-            <Text style={styles.title}>
-              Find <Text style={styles.span}>perfect</Text>
-            </Text>
-            <Text style={styles.title}>furniture for you.</Text>
-          </View>
-          <View style={{marginTop: 30, marginBottom: 20}}>
-            <FlatList
-              data={types}
-              renderItem={({item}) => <TypeButton type={item} />}
-              keyExtractor={item => item}
-              horizontal
-            />
+            <Text style={styles.title}>Your favorites</Text>
           </View>
 
           <FlatList
