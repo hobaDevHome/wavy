@@ -6,16 +6,18 @@ import {tempImages} from '../utils/data';
 import ItemGallery from '../components/ItemGallery';
 import AddToCartBtn from '../components/AddToCartBtn';
 
-const Details = () => {
+const Details = ({route, navigation}) => {
+  const {item} = route.params;
+  console.log('detala', item.thumbs);
   return (
     <ScrollView>
       <View style={styles.container}>
         <View>
           <View>
-            <ItemGallery itemImages={tempImages} />
+            <ItemGallery itemImages={item.thumbs} />
           </View>
           <View style={styles.textBox}>
-            <Text style={styles.title}>Ashton Caned Teak</Text>
+            <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.title}>Accent Chair</Text>
             <Text style={{fontWeight: 'bold', marginTop: 10}}>Details</Text>
             <Text style={{marginTop: 10}}>

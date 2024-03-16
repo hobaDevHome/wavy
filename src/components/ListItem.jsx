@@ -19,7 +19,7 @@ const ListItem = ({item}) => {
           <HeartIconSolid size={15} color={colors.favGray} />
         )}
       </Pressable>
-      <Pressable onPress={() => navigation.navigate('Details')}>
+      <Pressable onPress={() => navigation.navigate('Details', {item: item})}>
         <Image source={item.image} style={styles.image} />
       </Pressable>
       <View style={styles.textBox}>

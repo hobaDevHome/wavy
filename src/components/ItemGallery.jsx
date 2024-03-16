@@ -11,14 +11,17 @@ const ItemGallery = ({itemImages}) => {
   const [sliderIndex, setSliderIndex] = useState(0);
   const [fav, setfav] = useState(false);
   const navigation = useNavigation();
-
+  if (!itemImages) {
+    return;
+  }
+  console.log('in details', itemImages);
   const ThumbImage = ({thumbImg, overlay = false, index = 0}) => {
     return (
       <Pressable style={styles.thumbImage} onPress={() => setThumbIndex(index)}>
         <Image source={thumbImg} style={styles.thumimge} />
         {overlay && (
           <Pressable style={styles.overlay} onPress={() => setshowSlider(true)}>
-            <Text style={{color: 'white'}}>+4</Text>
+            <Text style={{color: 'white'}}>+3</Text>
           </Pressable>
         )}
       </Pressable>
