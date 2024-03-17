@@ -14,8 +14,9 @@ import React, {useState, useEffect} from 'react';
 import {colors} from '../utils/constants';
 import {tempData} from '../utils/data';
 import ListItem from '../components/ListItem';
-import {MenuIcon, Lense} from '../utils/icons';
+import {MenuIcon} from '../utils/icons';
 import {useDispatch, useSelector} from 'react-redux';
+import logo from '../images/logo.png';
 
 import {setProducts} from '../redux/productsSlice';
 
@@ -65,17 +66,14 @@ const ProductsList = ({navigation}) => {
         source={require('../images/Home.png')}
         style={styles.image}>
         <ScrollView>
-          {/* <View style={styles.iconsRow}>
+          <View style={styles.iconsRow}>
             <Pressable style={styles.iconBox}>
               <MenuIcon size={20} color={colors.balck} />
             </Pressable>
             <Text style={styles.greet}>Hello, John Honai</Text>
-            <Pressable
-              style={[styles.iconBox, {backgroundColor: colors.balck}]}>
-              <Lense size={24} color={colors.white} />
-            </Pressable>
-          </View> */}
-          <View style={{marginTop: 20}}>
+          </View>
+          <View>
+            <Image source={logo} style={styles.logo} />
             <Text style={styles.title}>
               Find <Text style={styles.span}>perfect</Text>
             </Text>
@@ -108,6 +106,12 @@ export default ProductsList;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  logo: {
+    width: 100,
+    height: 60,
+    objectFit: 'contain',
+    alignSelf: 'center',
   },
   icon: {
     width: 150,
@@ -151,7 +155,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 350,
     padding: 10,
-    marginTop: 40,
+    marginTop: 10,
   },
   iconBox: {
     width: 50,

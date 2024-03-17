@@ -5,36 +5,40 @@ import {tempImages} from '../utils/data';
 
 import ItemGallery from '../components/ItemGallery';
 import AddToCartBtn from '../components/AddToCartBtn';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const Details = ({route, navigation}) => {
   const {item} = route.params;
   console.log('detala', item.thumbs);
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View>
+    <SafeAreaView>
+      <ScrollView style={{height: '100%'}}>
+        <View style={styles.container}>
           <View>
-            <ItemGallery itemImages={item.thumbs} />
+            <View>
+              <ItemGallery itemImages={item.thumbs} />
+            </View>
+            <View style={styles.textBox}>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text>{item.subtitle ? item.subtitle : ''}</Text>
+              {item.details && (
+                <>
+                  <Text
+                    style={{fontWeight: 'bold', marginTop: 10, fontSize: 16}}>
+                    Details
+                  </Text>
+                  <Text style={{marginTop: 10}}>{item.details}</Text>
+                </>
+              )}
+            </View>
           </View>
-          <View style={styles.textBox}>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.title}>Accent Chair</Text>
-            <Text style={{fontWeight: 'bold', marginTop: 10}}>Details</Text>
-            <Text style={{marginTop: 10}}>
-              Bring a sense of the outdoors inside with this reclaimed teak wood
-              accent chair. Featuring a caned back and a sculptural silhouette
-              that showcases its natural grain patterns, it's well-suited for
-              sun rooms, reading nooks, and minimalist living spaces.
-            </Text>
-          </View>
-        </View>
-        <View>
+
           <View>
             <AddToCartBtn />
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -43,8 +47,12 @@ export default Details;
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
+    flex: 1,
+
     justifyContent: 'space-between',
-    height: '100%',
+    minHeight: '100%',
+    borderWidth: 1,
+    marginBottom: 70,
   },
   textBox: {
     padding: 20,

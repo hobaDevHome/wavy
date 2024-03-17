@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 350,
-    height: 400,
+    height: 300,
     objectFit: 'cover',
     borderRadius: 20,
   },
