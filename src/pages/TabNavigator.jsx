@@ -19,7 +19,13 @@ const TabNavigator = () => {
         headerShown: false,
         tabBarInactiveTintColor: colors.balck,
         tabBarActiveTintColor: colors.darkGreen,
-        tabBarStyle: {paddingBottom: 5, paddingTop: 3},
+        tabBarStyle: {
+          paddingBottom: 7,
+          paddingTop: 7,
+          borderTopRightRadius: 20,
+          borderTopLeftRadius: 20,
+          height: 70,
+        },
       })}>
       <Tab.Screen
         name="ProductsStack"
