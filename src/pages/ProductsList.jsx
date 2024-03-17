@@ -16,9 +16,9 @@ import {tempData} from '../utils/data';
 import ListItem from '../components/ListItem';
 import {MenuIcon} from '../utils/icons';
 import {useDispatch, useSelector} from 'react-redux';
-import logo from '../images/logo.png';
 
 import {setProducts} from '../redux/productsSlice';
+import logo from '../images/logo.png';
 
 const types = ['all', 'chairs', 'sofas', 'beds'];
 

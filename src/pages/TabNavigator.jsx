@@ -8,10 +8,12 @@ import Favorites from './Favorites';
 import ProdcutsStack from './ProdcutsStack';
 import {CartIcon, FavListIcon, ListIcon} from '../utils/icons';
 import {colors} from '../utils/constants';
+import {useSelector} from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const {totalQuantity} = useSelector(state => state.cart);
   return (
     <Tab.Navigator
       initialRouteName="tiendas"
@@ -43,7 +45,16 @@ const TabNavigator = () => {
         options={{
           title: 'Cart',
           tabBarIcon: ({size, focused, color}) => {
-            return <CartIcon color={color} size={size} />;
+            return (
+              <View style={styles.cartBox}>
+                <CartIcon color={color} size={size} />
+                {totalQuantity > 0 && (
+                  <View style={styles.badgbox}>
+                    <Text style={styles.badgeText}>{totalQuantity}</Text>
+                  </View>
+                )}
+              </View>
+            );
           },
         }}
       />
@@ -63,4 +74,24 @@ const TabNavigator = () => {
 
 export default TabNavigator;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  cartBox: {
+    position: 'relative',
+  },
+  badgbox: {
+    position: 'absolute',
+    top: -12,
+    right: -14,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: colors.darkGreen,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  badgeText: {
+    color: colors.white,
+    fontSize: 12,
+  },
+});

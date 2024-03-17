@@ -12,7 +12,7 @@ import {DeleteIcon} from '../utils/icons';
 
 import CartItem from '../components/CartItem';
 import logo from '../images/logo.png';
-import noitems from '../images/noitems.jpg';
+import noitems from '../images/noitems3.png';
 
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -32,8 +32,8 @@ const Cart = () => {
   const {totalAmount} = useSelector(state => state.cart);
 
   return (
-    <ScrollView>
-      <View style={styles.cont}>
+    <ScrollView contentContainerStyle={styles.cont}>
+      <View style={styles.cont1}>
         <Image source={logo} style={styles.logo} />
         <View style={styles.textbox}>
           <Text style={styles.cartTitlte}>Your Cart</Text>
@@ -41,8 +41,7 @@ const Cart = () => {
 
         {!cartItems || cartItems.length === 0 ? (
           <>
-            <Image source={noitems} style={styles.logo} />
-            <Text style={styles.noitemstext}>no items in your cart</Text>
+            <Image source={noitems} style={styles.noitems} />
           </>
         ) : (
           <>
@@ -70,7 +69,20 @@ const Cart = () => {
 export default Cart;
 
 const styles = StyleSheet.create({
-  cont: {display: 'flex', justifyContent: 'center', alignItems: 'center'},
+  cont: {
+    display: 'flex',
+
+    backgroundColor: 'white',
+    height: '100%',
+    flex: 1,
+    borderColor: 'red',
+  },
+  cont1: {
+    display: 'flex',
+
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
   totalView: {
     display: 'flex',
     flexDirection: 'row',
@@ -78,14 +90,14 @@ const styles = StyleSheet.create({
     width: 320,
     marginTop: 20,
   },
-  totalText: {fontSize: 30, fontWeight: 'bold', color: colors.balck},
+  totalText: {fontSize: 24, fontWeight: 'bold', color: colors.balck},
   itemImage: {
     width: 40,
     height: 40,
     borderRadius: 5,
     objectFit: 'cover',
   },
-  totalPrice: {fontSize: 30, fontWeight: 'bold', color: colors.darkGreen},
+  totalPrice: {fontSize: 24, fontWeight: 'bold', color: colors.darkGreen},
   loginBtn: {
     width: 320,
     height: 50,
@@ -104,17 +116,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cartTitlte: {
-    fontSize: 36,
+    fontSize: 24,
     color: colors.balck,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   textbox: {
     display: 'flex',
 
     width: 320,
-    marginTop: 50,
+    marginTop: 20,
   },
   noitemstext: {
     fontSize: 24,
@@ -126,5 +138,11 @@ const styles = StyleSheet.create({
     objectFit: 'contain',
     alignSelf: 'center',
     marginTop: 20,
+  },
+  noitems: {
+    width: 350,
+    height: 350,
+    objectFit: 'contain',
+    alignSelf: 'center',
   },
 });

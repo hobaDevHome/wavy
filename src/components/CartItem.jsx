@@ -11,12 +11,7 @@ import {colors} from '../utils/constants';
 
 import {useDispatch, useSelector} from 'react-redux';
 
-import {
-  addItem,
-  decreaseItemQuantity,
-  deleteItem,
-  resetCart,
-} from '../redux/cartSlice';
+import {addItem, decreaseItemQuantity, deleteItem} from '../redux/cartSlice';
 import {DeleteIcon} from '../utils/icons';
 
 const CartItem = ({item}) => {
@@ -41,20 +36,21 @@ const CartItem = ({item}) => {
         <View style={styles.itemdetails}>
           <Text style={styles.itemTitle}>{item.title}</Text>
           <Text style={styles.itemprice}>${item.price}</Text>
-
-          <TouchableOpacity onPress={deleteItemFromCart}>
-            <DeleteIcon color={colors.maroon} size={24} />
-          </TouchableOpacity>
         </View>
+        <View style={{display: 'flex', justifyContent: 'space-between'}}>
+          <TouchableOpacity onPress={deleteItemFromCart} style={styles.iconBox}>
+            <DeleteIcon color={colors.maroon} size={20} />
+          </TouchableOpacity>
 
-        <View style={styles.counter}>
-          <TouchableOpacity onPress={handleRmoveFromCart}>
-            <Text style={styles.add}>-</Text>
-          </TouchableOpacity>
-          <Text>{item.quantity}</Text>
-          <TouchableOpacity onPress={handleAddToCart}>
-            <Text style={styles.add}>+</Text>
-          </TouchableOpacity>
+          <View style={styles.counter}>
+            <TouchableOpacity onPress={handleRmoveFromCart}>
+              <Text style={styles.add}>-</Text>
+            </TouchableOpacity>
+            <Text>{item.quantity}</Text>
+            <TouchableOpacity onPress={handleAddToCart}>
+              <Text style={styles.add}>+</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -65,13 +61,20 @@ export default CartItem;
 
 const styles = StyleSheet.create({
   cont: {
-    width: 320,
+    width: 350,
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: '#dee7e4',
     padding: 10,
     borderRadius: 10,
     marginVertical: 10,
+  },
+  iconBox: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingHorizontal: 10,
+    marginBottom: 20,
   },
 
   itemImage: {
@@ -107,7 +110,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   itemTitle: {
-    fontSize: 20,
+    fontSize: 16,
     color: colors.balck,
     marginBottom: 5,
   },
