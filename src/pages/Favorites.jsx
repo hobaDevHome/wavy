@@ -16,19 +16,21 @@ import {tempData} from '../utils/data';
 import ListItem from '../components/ListItem';
 import {useSelector} from 'react-redux';
 
+import favPic from '../images/fav.png';
+
 const Favorites = () => {
   const {favList} = useSelector(state => state.products);
 
   console.log('from vav', favList.length);
   return (
     <SafeAreaView>
-      <ImageBackground
-        source={require('../images/Home.png')}
-        style={styles.image}>
-        <ScrollView>
+      <ScrollView>
+        <View style={styles.image}>
           <View style={{marginTop: 20}}>
             <Text style={styles.title}>Your favorites</Text>
           </View>
+          <Image source={favPic} style={styles.favPic} />
+
           {favList.length === 0 ? (
             <Text>no items in this list</Text>
           ) : (
@@ -40,8 +42,8 @@ const Favorites = () => {
               scrollEnabled={false}
             />
           )}
-        </ScrollView>
-      </ImageBackground>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -62,6 +64,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
+  },
+  favPic: {
+    width: 320,
+    height: 180,
+    alignSelf: 'center',
   },
   titlecontinaer: {
     display: 'flex',

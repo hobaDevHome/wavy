@@ -65,7 +65,7 @@ const ProductsList = ({navigation}) => {
         source={require('../images/Home.png')}
         style={styles.image}>
         <ScrollView>
-          <View style={styles.iconsRow}>
+          {/* <View style={styles.iconsRow}>
             <Pressable style={styles.iconBox}>
               <MenuIcon size={20} color={colors.balck} />
             </Pressable>
@@ -74,7 +74,7 @@ const ProductsList = ({navigation}) => {
               style={[styles.iconBox, {backgroundColor: colors.balck}]}>
               <Lense size={24} color={colors.white} />
             </Pressable>
-          </View>
+          </View> */}
           <View style={{marginTop: 20}}>
             <Text style={styles.title}>
               Find <Text style={styles.span}>perfect</Text>
