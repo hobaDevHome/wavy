@@ -10,14 +10,16 @@ import {
   SafeAreaView,
   Pressable,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {colors} from '../utils/constants';
 import {tempData} from '../utils/data';
 import ListItem from '../components/ListItem';
+import {useSelector} from 'react-redux';
 
-const Favorites = ({favList}) => {
-  const [selectedType, setSelectedType] = useState('all');
+const Favorites = () => {
+  const {favList} = useSelector(state => state.products);
 
+  console.log('from vav', favList.length);
   return (
     <SafeAreaView>
       <ImageBackground
@@ -27,14 +29,17 @@ const Favorites = ({favList}) => {
           <View style={{marginTop: 20}}>
             <Text style={styles.title}>Your favorites</Text>
           </View>
-
-          <FlatList
-            data={tempData}
-            renderItem={({item}) => <ListItem item={item} />}
-            keyExtractor={item => item.id}
-            numColumns={2}
-            scrollEnabled={false}
-          />
+          {favList.length === 0 ? (
+            <Text>no items in this list</Text>
+          ) : (
+            <FlatList
+              data={favList}
+              renderItem={({item}) => <ListItem item={item} />}
+              keyExtractor={item => item.id}
+              numColumns={2}
+              scrollEnabled={false}
+            />
+          )}
         </ScrollView>
       </ImageBackground>
     </SafeAreaView>

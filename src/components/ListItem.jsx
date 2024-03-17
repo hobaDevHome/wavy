@@ -1,18 +1,41 @@
 import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {colors} from '../utils/constants';
 import {HeartIconSolid} from '../utils/icons';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+
+import {setFavorite} from '../redux/productsSlice';
 
 const ListItem = ({item}) => {
   const [fav, setfav] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const {favList} = useSelector(state => state.products);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const existingItem = favList.find(e => item.id === e.id);
+    if (existingItem) {
+      setfav(true);
+    } else {
+      setfav(false);
+    }
+  }, [dispatch]);
+
   if (!item) {
     return;
   }
+
+  const handleFavPress = () => {
+    setfav(!fav);
+    dispatch(setFavorite(item));
+  };
+
   return (
     <View style={styles.itemCont}>
-      <Pressable style={styles.iconBox} onPress={() => setfav(!fav)}>
+      <Pressable style={styles.iconBox} onPress={handleFavPress}>
         {fav ? (
           <HeartIconSolid size={15} color={colors.red} />
         ) : (

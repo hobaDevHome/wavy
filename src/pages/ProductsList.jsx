@@ -15,6 +15,9 @@ import {colors} from '../utils/constants';
 import {tempData} from '../utils/data';
 import ListItem from '../components/ListItem';
 import {MenuIcon, Lense} from '../utils/icons';
+import {useDispatch, useSelector} from 'react-redux';
+
+import {setProducts} from '../redux/productsSlice';
 
 const types = ['all', 'chairs', 'sofas', 'beds'];
 
@@ -22,15 +25,20 @@ const ProductsList = ({navigation}) => {
   const [selectedType, setSelectedType] = useState('all');
   const [filtered, setFiltered] = useState([]);
 
+  const dispatch = useDispatch();
+
+  const {products} = useSelector(state => state.products);
+
   useEffect(() => {
-    setFiltered(tempData);
+    setFiltered(products);
+    dispatch(setProducts(tempData));
   }, []);
 
   useEffect(() => {
     if (selectedType === 'all') {
-      setFiltered(tempData);
+      setFiltered(products);
     } else {
-      let temp = tempData.filter(
+      let temp = products.filter(
         e => e.type.toLowerCase() === selectedType.toLowerCase(),
       );
 
@@ -50,7 +58,7 @@ const ProductsList = ({navigation}) => {
       </Pressable>
     );
   };
-  console.log('selecttype', selectedType);
+
   return (
     <SafeAreaView>
       <ImageBackground

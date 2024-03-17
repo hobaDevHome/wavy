@@ -48,13 +48,6 @@ const ItemGallery = ({itemImages}) => {
               onPress={() => navigation.navigate('ProductsHome')}>
               <ArrowLeft size={20} color={colors.balck} />
             </Pressable>
-            <Pressable style={styles.iconBox} onPress={() => setfav(!fav)}>
-              {fav ? (
-                <HeartIconSolid size={20} color={colors.red} />
-              ) : (
-                <HeartIconSolid size={20} color={colors.favGray} />
-              )}
-            </Pressable>
           </View>
           {itemImages.length > 1 && (
             <View style={styles.thumgsLcol}>
