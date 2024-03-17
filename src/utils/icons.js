@@ -8,6 +8,9 @@ import Icon6 from 'react-native-vector-icons/Fontisto';
 export const HeartIconSolid = ({size, color}) => (
   <Icon name="heart" size={size} color={color} />
 );
+export const DeleteIcon = ({size, color}) => (
+  <Icon name="delete" size={size} color={color} />
+);
 export const HeartIconOutline = ({size, color}) => (
   <Icon name="hearto" size={size} color={color} />
 );

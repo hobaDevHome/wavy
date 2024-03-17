@@ -4,13 +4,13 @@ import {colors} from '../utils/constants';
 import {ArrowRidhtDouble} from '../utils/icons';
 import cta from '../images/CTA.png';
 
-const AddToCartBtn = () => {
+const AddToCartBtn = ({price}) => {
   return (
     <View style={styles.cont}>
       <Image source={cta} style={styles.cta} />
       <View style={styles.textrow}>
         <Text style={styles.price}>AddToCartBtn</Text>
-        <Text style={styles.price}>$742.00</Text>
+        <Text style={styles.price}>${price}</Text>
       </View>
     </View>
   );
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     marginLeft: 10,
-    marginTop: -16,
+    marginTop: -18,
   },
 });

@@ -41,7 +41,7 @@ const TabNavigator = () => {
         name="Cart"
         component={Cart}
         options={{
-          title: 'Products',
+          title: 'Cart',
           tabBarIcon: ({size, focused, color}) => {
             return <CartIcon color={color} size={size} />;
           },
@@ -51,7 +51,7 @@ const TabNavigator = () => {
         name="Favorites"
         component={Favorites}
         options={{
-          title: 'Products',
+          title: 'Favorties',
           tabBarIcon: ({size, focused, color}) => {
             return <FavListIcon color={color} size={size} />;
           },

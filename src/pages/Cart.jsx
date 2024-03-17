@@ -8,43 +8,60 @@ import {
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {colors} from '../utils/constants';
-import {CartIcon, ListIcon, FavListIcon, LogOutIcon} from '../utils/icons';
-import {Divider, Avatar} from 'react-native-paper';
-import {tempData} from '../utils/data';
-import CartItem from '../components/CartItem';
+import {DeleteIcon} from '../utils/icons';
 
-const Cart = ({cartItems = [1]}) => {
+import CartItem from '../components/CartItem';
+import logo from '../images/logo.png';
+import noitems from '../images/noitems.jpg';
+
+import {useDispatch, useSelector} from 'react-redux';
+
+import {
+  addItem,
+  decreaseItemQuantity,
+  deleteItem,
+  resetCart,
+} from '../redux/cartSlice';
+
+const Cart = () => {
   const [total, settotal] = useState(0);
 
-  if (!cartItems || cartItems.length === 0) {
-    return <Text style={styles.noitemstext}>no items in your cart</Text>;
-  }
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    let sum = tempData.reduce((a, s) => a + s.price, 0);
-    settotal(sum);
-  }, [cartItems]);
+  const {cartItems} = useSelector(state => state.cart);
+  const {totalAmount} = useSelector(state => state.cart);
 
   return (
     <ScrollView>
       <View style={styles.cont}>
+        <Image source={logo} style={styles.logo} />
         <View style={styles.textbox}>
           <Text style={styles.cartTitlte}>Your Cart</Text>
         </View>
-        {tempData.slice(0, 3).map(item => {
-          return (
-            <View key={item.id}>
-              <CartItem item={item} />
+
+        {!cartItems || cartItems.length === 0 ? (
+          <>
+            <Image source={noitems} style={styles.logo} />
+            <Text style={styles.noitemstext}>no items in your cart</Text>
+          </>
+        ) : (
+          <>
+            {cartItems.map(item => {
+              return (
+                <View key={item.id}>
+                  <CartItem item={item} />
+                </View>
+              );
+            })}
+            <View style={styles.totalView}>
+              <Text style={styles.totalText}>Total</Text>
+              <Text style={styles.totalPrice}>${totalAmount}</Text>
             </View>
-          );
-        })}
-        <View style={styles.totalView}>
-          <Text style={styles.totalText}>Total</Text>
-          <Text style={styles.totalPrice}>${total}</Text>
-        </View>
-        <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.btntext}>Proceed to checkout</Text>
-        </TouchableOpacity>
+            <TouchableOpacity style={styles.loginBtn}>
+              <Text style={styles.btntext}>Proceed to checkout</Text>
+            </TouchableOpacity>
+          </>
+        )}
       </View>
     </ScrollView>
   );
@@ -90,7 +107,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: colors.balck,
     fontWeight: 'bold',
-    textAlign: 'left',
+    textAlign: 'center',
     marginBottom: 20,
   },
   textbox: {
@@ -102,5 +119,12 @@ const styles = StyleSheet.create({
   noitemstext: {
     fontSize: 24,
     padding: 10,
+  },
+  logo: {
+    width: 100,
+    height: 60,
+    objectFit: 'contain',
+    alignSelf: 'center',
+    marginTop: 20,
   },
 });

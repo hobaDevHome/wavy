@@ -9,7 +9,29 @@ import {
 import React, {useState, useEffect} from 'react';
 import {colors} from '../utils/constants';
 
+import {useDispatch, useSelector} from 'react-redux';
+
+import {
+  addItem,
+  decreaseItemQuantity,
+  deleteItem,
+  resetCart,
+} from '../redux/cartSlice';
+import {DeleteIcon} from '../utils/icons';
+
 const CartItem = ({item}) => {
+  const dispatch = useDispatch();
+
+  const {cartItems} = useSelector(state => state.cart);
+  const handleAddToCart = () => {
+    dispatch(addItem(item));
+  };
+  const handleRmoveFromCart = () => {
+    dispatch(decreaseItemQuantity(item));
+  };
+  const deleteItemFromCart = () => {
+    dispatch(deleteItem(item.id));
+  };
   return (
     <View style={styles.cont}>
       <View>
@@ -19,13 +41,18 @@ const CartItem = ({item}) => {
         <View style={styles.itemdetails}>
           <Text style={styles.itemTitle}>{item.title}</Text>
           <Text style={styles.itemprice}>${item.price}</Text>
+
+          <TouchableOpacity onPress={deleteItemFromCart}>
+            <DeleteIcon color={colors.maroon} size={24} />
+          </TouchableOpacity>
         </View>
+
         <View style={styles.counter}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleRmoveFromCart}>
             <Text style={styles.add}>-</Text>
           </TouchableOpacity>
-          <Text>2</Text>
-          <TouchableOpacity>
+          <Text>{item.quantity}</Text>
+          <TouchableOpacity onPress={handleAddToCart}>
             <Text style={styles.add}>+</Text>
           </TouchableOpacity>
         </View>

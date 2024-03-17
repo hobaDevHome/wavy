@@ -1,4 +1,10 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {colors} from '../utils/constants';
 import {tempImages} from '../utils/data';
@@ -7,12 +13,21 @@ import ItemGallery from '../components/ItemGallery';
 import AddToCartBtn from '../components/AddToCartBtn';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
+import {useDispatch, useSelector} from 'react-redux';
+
+import {addItem} from '../redux/cartSlice';
+
 const Details = ({route, navigation}) => {
   const {item} = route.params;
-  console.log('detala', item.thumbs);
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addItem(item));
+  };
+
   return (
     <SafeAreaView>
-      <ScrollView style={{height: '100%'}}>
+      <ScrollView>
         <View style={styles.container}>
           <View>
             <View>
@@ -33,9 +48,9 @@ const Details = ({route, navigation}) => {
             </View>
           </View>
 
-          <View>
-            <AddToCartBtn />
-          </View>
+          <TouchableOpacity onPress={handleAddToCart}>
+            <AddToCartBtn price={item.price} />
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -51,7 +66,7 @@ const styles = StyleSheet.create({
 
     justifyContent: 'space-between',
     minHeight: '100%',
-    borderWidth: 1,
+
     marginBottom: 70,
   },
   textBox: {
