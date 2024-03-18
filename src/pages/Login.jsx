@@ -23,12 +23,14 @@ import {
   signInWithRedirect,
 } from 'firebase/auth';
 import {auth} from '../../config/firebase';
+import {mapAuthCodeToMessage} from '../utils/mapFirebaseErrors';
 
 const Login = ({navigation}) => {
   const [newUser, setNewUser] = useState(false);
   const [email, setemail] = useState('');
   const [pawd, setpawd] = useState('');
   const [name, setname] = useState('');
+  const [errorMsg, seterrorMsg] = useState('');
 
   const provider = new GoogleAuthProvider();
 
@@ -41,6 +43,7 @@ const Login = ({navigation}) => {
       });
     } catch (error) {
       console.log(error);
+      seterrorMsg(mapAuthCodeToMessage(error.code));
     }
   };
   const handlesingin = async () => {
@@ -48,12 +51,11 @@ const Login = ({navigation}) => {
       await signInWithEmailAndPassword(auth, email, pawd);
     } catch (error) {
       console.log(error);
+      seterrorMsg(mapAuthCodeToMessage(error.code));
     }
   };
 
   const handlesingUpWithGoogle = async () => {
-    console.log('handlesingUpWithGoogle');
-
     await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
     const {idToken} = await GoogleSignin.signIn();
 
@@ -90,7 +92,10 @@ const Login = ({navigation}) => {
             placeholder="name"
             mode="outlined"
             value={name}
-            onChangeText={text => setname(text)}
+            onChangeText={text => {
+              seterrorMsg('');
+              setname(text);
+            }}
             style={styles.input}
           />
         )}
@@ -98,18 +103,24 @@ const Login = ({navigation}) => {
           placeholder="email"
           mode="outlined"
           value={email}
-          onChangeText={text => setemail(text)}
+          onChangeText={text => {
+            seterrorMsg('');
+            setemail(text);
+          }}
           style={styles.input}
         />
         <TextInput
           placeholder="password"
           mode="outlined"
           value={pawd}
-          onChangeText={text => setpawd(text)}
+          onChangeText={text => {
+            seterrorMsg('');
+            setpawd(text);
+          }}
           style={styles.input}
           secureTextEntry
         />
-
+        {errorMsg && <Text style={{color: 'red'}}>{errorMsg}</Text>}
         {newUser ? (
           <TouchableOpacity style={styles.loginBtn} onPress={handlesingup}>
             <Text style={styles.btntext}>Sing up</Text>

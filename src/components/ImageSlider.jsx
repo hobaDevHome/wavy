@@ -35,7 +35,7 @@ const ImageSlider = ({images}) => {
         {images.map((image, index) => (
           <Image
             key={index}
-            source={image}
+            source={{uri: image}}
             style={{width: 350, height, resizeMode: 'cover', borderRadius: 10}}
           />
         ))}

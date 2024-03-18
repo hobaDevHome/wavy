@@ -43,7 +43,7 @@ const ListItem = ({item}) => {
         )}
       </Pressable>
       <Pressable onPress={() => navigation.navigate('Details', {item: item})}>
-        <Image source={item.image} style={styles.image} />
+        <Image source={{uri: item.image[0]}} style={styles.image} />
       </Pressable>
       <View style={styles.textBox}>
         <Text style={styles.title}>{item.title}</Text>

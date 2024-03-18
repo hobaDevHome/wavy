@@ -18,7 +18,7 @@ const ItemGallery = ({itemImages}) => {
   const ThumbImage = ({thumbImg, overlay = false, index = 0}) => {
     return (
       <Pressable style={styles.thumbImage} onPress={() => setThumbIndex(index)}>
-        <Image source={thumbImg} style={styles.thumimge} />
+        <Image source={{uri: thumbImg}} style={styles.thumimge} />
         {overlay && (
           <Pressable style={styles.overlay} onPress={() => setshowSlider(true)}>
             <Text style={{color: 'white'}}>+3</Text>
@@ -41,7 +41,7 @@ const ItemGallery = ({itemImages}) => {
         </View>
       ) : (
         <View style={styles.thumbsView}>
-          <Image source={itemImages[thumbIndex]} style={styles.image} />
+          <Image source={{uri: itemImages[thumbIndex]}} style={styles.image} />
           <View style={styles.iconsRow}>
             <Pressable
               style={styles.iconBox}

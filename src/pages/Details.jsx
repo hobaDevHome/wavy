@@ -7,13 +7,12 @@ import {
 } from 'react-native';
 import React from 'react';
 import {colors} from '../utils/constants';
-import {tempImages} from '../utils/data';
 
 import ItemGallery from '../components/ItemGallery';
 import AddToCartBtn from '../components/AddToCartBtn';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {addItem} from '../redux/cartSlice';
 
@@ -31,7 +30,7 @@ const Details = ({route, navigation}) => {
         <View style={styles.container}>
           <View>
             <View>
-              <ItemGallery itemImages={item.thumbs} />
+              <ItemGallery itemImages={item.image} />
             </View>
             <View style={styles.textBox}>
               <Text style={styles.title}>{item.title}</Text>

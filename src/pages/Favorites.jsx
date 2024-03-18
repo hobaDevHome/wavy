@@ -21,7 +21,6 @@ import favPic from '../images/fav.png';
 const Favorites = () => {
   const {favList} = useSelector(state => state.products);
 
-  console.log('from vav', favList.length);
   return (
     <SafeAreaView>
       <ScrollView>

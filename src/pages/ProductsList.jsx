@@ -18,7 +18,11 @@ import {MenuIcon} from '../utils/icons';
 import {useDispatch, useSelector} from 'react-redux';
 import useAuth from '../hooks/useAuth';
 
-import {setProducts} from '../redux/productsSlice';
+import {
+  setProducts,
+  selectProducts,
+  fetchProducts,
+} from '../redux/productsSlice';
 import logo from '../images/logo.png';
 
 const types = ['all', 'chairs', 'sofas', 'beds'];
@@ -29,21 +33,22 @@ const ProductsList = ({navigation}) => {
   const [userName, setuserName] = useState('');
 
   const dispatch = useDispatch();
-
   const {products} = useSelector(state => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   const {user} = useAuth();
 
   useEffect(() => {
     setFiltered(products);
-    dispatch(setProducts(tempData));
+    // dispatch(setProducts(tempData));
   }, [dispatch, products]);
 
   useEffect(() => {
     if (user) {
       setuserName(user.displayName);
-      console.log('usrname-***********', user);
-      console.log('usrname---------', user.displayName);
     }
   }, [user, userName]);
 

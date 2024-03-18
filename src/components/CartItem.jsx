@@ -30,7 +30,7 @@ const CartItem = ({item}) => {
   return (
     <View style={styles.cont}>
       <View>
-        <Image source={item.image} style={styles.itemImage} />
+        <Image source={{uri: item.image}} style={styles.itemImage} />
       </View>
       <View style={styles.rightcol}>
         <View style={styles.itemdetails}>
