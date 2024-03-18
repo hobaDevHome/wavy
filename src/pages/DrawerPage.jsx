@@ -4,28 +4,34 @@ import {colors} from '../utils/constants';
 import {CartIcon, ListIcon, FavListIcon, LogOutIcon} from '../utils/icons';
 import {Divider, Avatar} from 'react-native-paper';
 
-const DrawerPage = () => {
+const DrawerPage = ({navigation}) => {
   return (
     <View>
       <View style={styles.avatarview}>
         <Avatar.Text size={64} label="HA" />
         <Divider />
       </View>
-      <TouchableOpacity style={styles.listItemBox}>
+      <TouchableOpacity
+        style={styles.listItemBox}
+        onPress={() => navigation.navigate('ProductsHome')}>
         <View style={styles.iconBox}>
           <ListIcon color={colors.darkGreen} size={30} />
         </View>
         <Text style={styles.itemText}>Products List</Text>
       </TouchableOpacity>
       <Divider />
-      <TouchableOpacity style={styles.listItemBox}>
+      <TouchableOpacity
+        style={styles.listItemBox}
+        onPress={() => navigation.navigate('Favorites')}>
         <View style={styles.iconBox}>
           <FavListIcon color={colors.darkGreen} size={30} />
         </View>
         <Text style={styles.itemText}>Favorite List</Text>
       </TouchableOpacity>
       <Divider />
-      <TouchableOpacity style={styles.listItemBox}>
+      <TouchableOpacity
+        style={styles.listItemBox}
+        onPress={() => navigation.navigate('Cart')}>
         <View style={styles.iconBox}>
           <CartIcon color={colors.darkGreen} size={30} />
         </View>

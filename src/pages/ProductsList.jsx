@@ -67,7 +67,9 @@ const ProductsList = ({navigation}) => {
         style={styles.image}>
         <ScrollView>
           <View style={styles.iconsRow}>
-            <Pressable style={styles.iconBox}>
+            <Pressable
+              style={styles.iconBox}
+              onPress={() => navigation.openDrawer()}>
               <MenuIcon size={20} color={colors.balck} />
             </Pressable>
             <Text style={styles.greet}>Hello, John Honai</Text>

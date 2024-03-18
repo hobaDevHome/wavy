@@ -29,7 +29,7 @@ const Home = ({navigation}) => {
         <Text style={styles.subTitle}>
           Furniture and inspiration for a better everyday life at home
         </Text>
-        <Pressable onPress={() => navigation.navigate('List')}>
+        <Pressable onPress={() => navigation.navigate('ProdcutsList')}>
           <Image source={button} />
         </Pressable>
       </View>

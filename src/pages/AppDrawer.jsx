@@ -9,15 +9,19 @@ import TabNavigator from './TabNavigator';
 import Favorites from './Favorites';
 import ProductsList from './ProductsList';
 import DrawerPage from './DrawerPage';
+import Login from './Login';
+import Home from './Home';
 
 const Drawer = createDrawerNavigator();
 
 const AppDrawer = () => {
   return (
-    <Drawer.Navigator drawerContent={props => <DrawerPage {...props} />}>
+    <Drawer.Navigator
+      drawerContent={props => <DrawerPage {...props} />}
+      screenOptions={{headerShown: false}}>
+      <Drawer.Screen name="Login" component={Login} />
+      <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="ProdcutsList" component={TabNavigator} />
-      <Drawer.Screen name="CartPage" component={Cart} />
-      <Drawer.Screen name="Favorites" component={Favorites} />
     </Drawer.Navigator>
   );
 };

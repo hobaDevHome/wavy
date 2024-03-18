@@ -9,7 +9,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack2 = createNativeStackNavigator();
 
-const TabNavigator = () => {
+const ProductsStack = () => {
   return (
     <Stack2.Navigator screenOptions={{headerShown: false}}>
       <Stack2.Screen name="ProductsHome" component={ProductsList} />
@@ -18,6 +18,6 @@ const TabNavigator = () => {
   );
 };
 
-export default TabNavigator;
+export default ProductsStack;
 
 const styles = StyleSheet.create({});
