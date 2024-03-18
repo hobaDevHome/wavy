@@ -15,6 +15,7 @@ import facebook from '../images/facebook.png';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth';
 import {auth} from '../../config/firebase';
 
@@ -26,6 +27,9 @@ const Login = ({navigation}) => {
   const handlesingup = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, pawd);
+      await updateProfile(user, {
+        displayName: 'hoba',
+      });
     } catch (error) {
       console.log(error);
     }

@@ -16,6 +16,7 @@ import {tempData} from '../utils/data';
 import ListItem from '../components/ListItem';
 import {MenuIcon} from '../utils/icons';
 import {useDispatch, useSelector} from 'react-redux';
+import useAuth from '../hooks/useAuth';
 
 import {setProducts} from '../redux/productsSlice';
 import logo from '../images/logo.png';
@@ -29,6 +30,9 @@ const ProductsList = ({navigation}) => {
   const dispatch = useDispatch();
 
   const {products} = useSelector(state => state.products);
+
+  const {user} = useAuth();
+  // console.log(user.displayName);
 
   useEffect(() => {
     setFiltered(products);

@@ -5,8 +5,10 @@ import {CartIcon, ListIcon, FavListIcon, LogOutIcon} from '../utils/icons';
 import {Divider, Avatar} from 'react-native-paper';
 import {signOut} from 'firebase/auth';
 import {auth} from '../../config/firebase';
+import useAuth from '../hooks/useAuth';
 
 const DrawerPage = ({navigation}) => {
+  const {user} = useAuth();
   const logout = async () => {
     await signOut(auth);
     navigation.navigate('Login');
