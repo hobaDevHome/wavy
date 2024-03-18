@@ -63,11 +63,6 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
-
-    justifyContent: 'space-between',
-    minHeight: '100%',
-
-    marginBottom: 70,
   },
   textBox: {
     padding: 20,
