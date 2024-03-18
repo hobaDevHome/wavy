@@ -16,6 +16,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  GoogleAuthProvider,
+  GoogleSignin,
+  signInWithCredential,
+  signInWithPopup,
+  signInWithRedirect,
 } from 'firebase/auth';
 import {auth} from '../../config/firebase';
 
@@ -24,6 +29,8 @@ const Login = ({navigation}) => {
   const [email, setemail] = useState('');
   const [pawd, setpawd] = useState('');
   const [name, setname] = useState('');
+
+  const provider = new GoogleAuthProvider();
 
   const handlesingup = async () => {
     try {
@@ -39,6 +46,31 @@ const Login = ({navigation}) => {
   const handlesingin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, pawd);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handlesingUpWithGoogle = async () => {
+    console.log('handlesingUpWithGoogle');
+
+    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+    const {idToken} = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+  };
+
+  const handlesingInWithGoogle = async () => {
+    try {
+      const {user} = await createUserWithEmailAndPassword(auth, email, pawd);
+
+      await updateProfile(user, {
+        displayName: name,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -89,15 +121,15 @@ const Login = ({navigation}) => {
         )}
 
         <View style={styles.social}>
-          <Text>or sign up with</Text>
+          {/* <Text>or sign up with</Text>
           <View style={styles.socaillogos}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handlesingUpWithGoogle}>
               <Image source={google} />
             </TouchableOpacity>
             <TouchableOpacity>
               <Image source={facebook} />
             </TouchableOpacity>
-          </View>
+          </View> */}
 
           {newUser ? (
             <Pressable style={styles.notreg} onPress={() => setNewUser(false)}>
