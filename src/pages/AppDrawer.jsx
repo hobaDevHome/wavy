@@ -11,10 +11,20 @@ import ProductsList from './ProductsList';
 import DrawerPage from './DrawerPage';
 import Login from './Login';
 import Home from './Home';
+import useAuth from '../hooks/useAuth';
 
 const Drawer = createDrawerNavigator();
 
 const AppDrawer = () => {
+  const {user} = useAuth;
+  console.log('in draw------------------', user);
+  if (user) {
+    return (
+      <Drawer.Navigator drawerContent={props => <DrawerPage {...props} />}>
+        <Drawer.Screen name="ProdcutsList" component={TabNavigator} />
+      </Drawer.Navigator>
+    );
+  }
   return (
     <Drawer.Navigator
       drawerContent={props => <DrawerPage {...props} />}

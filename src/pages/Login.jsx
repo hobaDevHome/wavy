@@ -12,11 +12,23 @@ import {colors} from '../utils/constants';
 import {TextInput} from 'react-native-paper';
 import google from '../images/google.png';
 import facebook from '../images/facebook.png';
+import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {auth} from '../../config/firebase';
 
 const Login = ({navigation}) => {
   const [newUser, setNewUser] = useState(false);
   const [email, setemail] = useState('');
   const [pawd, setpawd] = useState('');
+
+  const handlesingup = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, pawd);
+      navigation.navigate('ProdcutsList');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handlesingin = () => {};
   return (
     <ImageBackground
       source={require('../images/Login.png')}
@@ -42,25 +54,17 @@ const Login = ({navigation}) => {
           style={styles.input}
           secureTextEntry
         />
-        {newUser && (
-          <TextInput
-            placeholder="confirm password"
-            mode="outlined"
-            value={pawd}
-            onChangeText={text => setpawd(text)}
-            style={styles.input}
-            secureTextEntry
-          />
-        )}
-        <TouchableOpacity
-          style={styles.loginBtn}
-          onPress={() => navigation.navigate('Home')}>
-          {newUser ? (
+
+        {newUser ? (
+          <TouchableOpacity style={styles.loginBtn} onPress={handlesingup}>
             <Text style={styles.btntext}>Sing up</Text>
-          ) : (
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.loginBtn} onPress={handlesingin}>
             <Text style={styles.btntext}>Login</Text>
-          )}
-        </TouchableOpacity>
+          </TouchableOpacity>
+        )}
+
         <View style={styles.social}>
           <Text>or sign up with</Text>
           <View style={styles.socaillogos}>
