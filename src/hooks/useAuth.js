@@ -4,10 +4,10 @@ import {onAuthStateChanged} from 'firebase/auth';
 import {auth} from '../../config/firebase';
 
 const useAuth = () => {
-  const [user, setuser] = useState({});
+  const [user, setuser] = useState(null);
 
   useEffect(() => {
-    console.log('user in useauth', user);
+    // console.log('user in useauth', user);
     onAuthStateChanged(auth, user => {
       if (user) {
         setuser(user);

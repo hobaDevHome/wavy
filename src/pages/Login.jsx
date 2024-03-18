@@ -23,12 +23,14 @@ const Login = ({navigation}) => {
   const [newUser, setNewUser] = useState(false);
   const [email, setemail] = useState('');
   const [pawd, setpawd] = useState('');
+  const [name, setname] = useState('');
 
   const handlesingup = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, pawd);
+      const {user} = await createUserWithEmailAndPassword(auth, email, pawd);
+
       await updateProfile(user, {
-        displayName: 'hoba',
+        displayName: name,
       });
     } catch (error) {
       console.log(error);
@@ -51,6 +53,15 @@ const Login = ({navigation}) => {
         </Text>
       </View>
       <View style={{marginTop: 20}}>
+        {newUser && (
+          <TextInput
+            placeholder="name"
+            mode="outlined"
+            value={name}
+            onChangeText={text => setname(text)}
+            style={styles.input}
+          />
+        )}
         <TextInput
           placeholder="email"
           mode="outlined"

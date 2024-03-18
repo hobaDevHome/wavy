@@ -17,7 +17,7 @@ const Drawer = createDrawerNavigator();
 
 const AppDrawer = () => {
   const {user} = useAuth();
-  console.log('in draw------------------', user);
+
   if (user) {
     return (
       <Drawer.Navigator
