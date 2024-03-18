@@ -33,7 +33,7 @@ const ProductsList = ({navigation}) => {
   useEffect(() => {
     setFiltered(products);
     dispatch(setProducts(tempData));
-  }, []);
+  }, [dispatch, products]);
 
   useEffect(() => {
     if (selectedType === 'all') {
