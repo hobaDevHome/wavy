@@ -10,9 +10,9 @@ const useAuth = () => {
     console.log('user in useauth', user);
     onAuthStateChanged(auth, user => {
       if (user) {
-        setcurrentUser(user);
+        setuser(user);
       } else {
-        setcurrentUser(null);
+        setuser(null);
       }
     });
   });

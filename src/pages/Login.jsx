@@ -26,7 +26,6 @@ const Login = ({navigation}) => {
   const handlesingup = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, pawd);
-      navigation.navigate('ProdcutsList');
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +33,6 @@ const Login = ({navigation}) => {
   const handlesingin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, pawd);
-      navigation.navigate('ProdcutsList');
     } catch (error) {
       console.log(error);
     }

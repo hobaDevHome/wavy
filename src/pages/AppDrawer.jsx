@@ -16,11 +16,13 @@ import useAuth from '../hooks/useAuth';
 const Drawer = createDrawerNavigator();
 
 const AppDrawer = () => {
-  const {user} = useAuth;
+  const {user} = useAuth();
   console.log('in draw------------------', user);
   if (user) {
     return (
-      <Drawer.Navigator drawerContent={props => <DrawerPage {...props} />}>
+      <Drawer.Navigator
+        drawerContent={props => <DrawerPage {...props} />}
+        screenOptions={{headerShown: false}}>
         <Drawer.Screen name="ProdcutsList" component={TabNavigator} />
       </Drawer.Navigator>
     );
