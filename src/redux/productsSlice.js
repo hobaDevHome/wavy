@@ -59,4 +59,6 @@ export const {setProducts} = productsSlice.actions;
 export const {setFavorite} = productsSlice.actions;
 
 export const selectProducts = state => state.products.products;
+export const selectStatus = state => state.products.status;
+export const selectError = state => state.products.error;
 export default productsSlice.reducer;

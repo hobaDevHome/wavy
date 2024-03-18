@@ -9,6 +9,7 @@ import {
   FlatList,
   SafeAreaView,
   Pressable,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {colors} from '../utils/constants';
@@ -22,6 +23,7 @@ import {
   setProducts,
   selectProducts,
   fetchProducts,
+  selectStatus,
 } from '../redux/productsSlice';
 import logo from '../images/logo.png';
 
@@ -34,6 +36,7 @@ const ProductsList = ({navigation}) => {
 
   const dispatch = useDispatch();
   const {products} = useSelector(state => state.products);
+  const status = useSelector(selectStatus);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -106,14 +109,19 @@ const ProductsList = ({navigation}) => {
               horizontal
             />
           </View>
-
-          <FlatList
-            data={filtered}
-            renderItem={({item}) => <ListItem item={item} />}
-            keyExtractor={item => item.id}
-            numColumns={2}
-            scrollEnabled={false}
-          />
+          {status === 'loading' ? (
+            <>
+              <ActivityIndicator size="large" />
+            </>
+          ) : (
+            <FlatList
+              data={filtered}
+              renderItem={({item}) => <ListItem item={item} />}
+              keyExtractor={item => item.id}
+              numColumns={2}
+              scrollEnabled={false}
+            />
+          )}
         </ScrollView>
       </ImageBackground>
     </SafeAreaView>

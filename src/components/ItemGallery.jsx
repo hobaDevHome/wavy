@@ -14,7 +14,7 @@ const ItemGallery = ({itemImages}) => {
   if (!itemImages) {
     return;
   }
-  console.log('in details', itemImages);
+
   const ThumbImage = ({thumbImg, overlay = false, index = 0}) => {
     return (
       <Pressable style={styles.thumbImage} onPress={() => setThumbIndex(index)}>
