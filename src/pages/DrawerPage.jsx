@@ -3,8 +3,14 @@ import React, {useState} from 'react';
 import {colors} from '../utils/constants';
 import {CartIcon, ListIcon, FavListIcon, LogOutIcon} from '../utils/icons';
 import {Divider, Avatar} from 'react-native-paper';
+import {signOut} from 'firebase/auth';
+import {auth} from '../../config/firebase';
 
 const DrawerPage = ({navigation}) => {
+  const logout = async () => {
+    await signOut(auth);
+    navigation.navigate('Login');
+  };
   return (
     <View>
       <View style={styles.avatarview}>
@@ -38,7 +44,7 @@ const DrawerPage = ({navigation}) => {
         <Text style={styles.itemText}>Cart </Text>
       </TouchableOpacity>
       <Divider />
-      <TouchableOpacity style={styles.listItemBox}>
+      <TouchableOpacity style={styles.listItemBox} onPress={logout}>
         <View style={styles.iconBox}>
           <LogOutIcon color={colors.darkGreen} size={30} />
         </View>

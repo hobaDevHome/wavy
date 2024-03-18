@@ -12,7 +12,10 @@ import {colors} from '../utils/constants';
 import {TextInput} from 'react-native-paper';
 import google from '../images/google.png';
 import facebook from '../images/facebook.png';
-import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import {auth} from '../../config/firebase';
 
 const Login = ({navigation}) => {
@@ -28,7 +31,14 @@ const Login = ({navigation}) => {
       console.log(error);
     }
   };
-  const handlesingin = () => {};
+  const handlesingin = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, pawd);
+      navigation.navigate('ProdcutsList');
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <ImageBackground
       source={require('../images/Login.png')}
