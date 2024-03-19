@@ -32,7 +32,6 @@ const types = ['all', 'chairs', 'sofas', 'beds'];
 const ProductsList = ({navigation}) => {
   const [selectedType, setSelectedType] = useState('all');
   const [filtered, setFiltered] = useState([]);
-  const [userName, setuserName] = useState('');
 
   const dispatch = useDispatch();
   const {products} = useSelector(state => state.products);
@@ -42,18 +41,9 @@ const ProductsList = ({navigation}) => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const {user} = useAuth();
-
   useEffect(() => {
     setFiltered(products);
-    // dispatch(setProducts(tempData));
   }, [dispatch, products]);
-
-  useEffect(() => {
-    if (user) {
-      setuserName(user.displayName);
-    }
-  }, [user, userName]);
 
   useEffect(() => {
     if (selectedType === 'all') {
@@ -92,7 +82,6 @@ const ProductsList = ({navigation}) => {
               onPress={() => navigation.openDrawer()}>
               <MenuIcon size={20} color={colors.balck} />
             </Pressable>
-            <Text style={styles.greet}>Hello, {user ? userName : 'there'}</Text>
           </View>
           <View>
             <Image source={logo} style={styles.logo} />
